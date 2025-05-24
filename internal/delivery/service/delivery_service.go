@@ -1,23 +1,23 @@
 package deliveryService
 
 import (
-	audienceService "github.com/abhishekjain1416/ad-campaign-service/internal/audience/service"
 	campaignService "github.com/abhishekjain1416/ad-campaign-service/internal/campaign/service"
+	matchEngineService "github.com/abhishekjain1416/ad-campaign-service/internal/match_engine/service"
 )
 
 type DeliveryService interface {
 }
 
 type deliveryService struct {
-	campaignService       campaignService.CampaignService
-	filterAudienceService audienceService.FilterAudienceService
+	campaignService          campaignService.CampaignService
+	matchEngineFilterService matchEngineService.FilterService
 }
 
 func NewDeliveryService(campaignService campaignService.CampaignService,
-	filterAudienceService audienceService.FilterAudienceService) DeliveryService {
+	matchEngineFilterService matchEngineService.FilterService) DeliveryService {
 
 	return &deliveryService{
-		campaignService:       campaignService,
-		filterAudienceService: filterAudienceService,
+		campaignService:          campaignService,
+		matchEngineFilterService: matchEngineFilterService,
 	}
 }

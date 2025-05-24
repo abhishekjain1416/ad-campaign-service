@@ -1,12 +1,12 @@
 package route
 
 import (
-	audienceRepository "github.com/abhishekjain1416/ad-campaign-service/internal/audience/repository"
-	audienceService "github.com/abhishekjain1416/ad-campaign-service/internal/audience/service"
 	campaignRepository "github.com/abhishekjain1416/ad-campaign-service/internal/campaign/repository"
 	campaignService "github.com/abhishekjain1416/ad-campaign-service/internal/campaign/service"
 	deliveryHandler "github.com/abhishekjain1416/ad-campaign-service/internal/delivery/handler"
 	deliveryService "github.com/abhishekjain1416/ad-campaign-service/internal/delivery/service"
+	matchEngineRepository "github.com/abhishekjain1416/ad-campaign-service/internal/match_engine/repository"
+	matchEngineService "github.com/abhishekjain1416/ad-campaign-service/internal/match_engine/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,10 +14,10 @@ var (
 	campaignRepositoryObj campaignRepository.CampaignRepository = campaignRepository.NewCampaignRepository()
 	campaignServiceObj    campaignService.CampaignService       = campaignService.NewCampaignService(campaignRepositoryObj)
 
-	targetRulesRepositoryObj audienceRepository.TargetRulesRepository = audienceRepository.NewTargetRulesRepository()
-	filterAudienceServiceObj audienceService.FilterAudienceService    = audienceService.NewFilterAudienceService(targetRulesRepositoryObj)
+	targetRulesRepositoryObj    matchEngineRepository.TargetRulesRepository = matchEngineRepository.NewTargetRulesRepository()
+	matchEngineFilterServiceObj matchEngineService.FilterService            = matchEngineService.NewFilterAudienceService(targetRulesRepositoryObj)
 
-	deliveryServiceObj deliveryService.DeliveryService = deliveryService.NewDeliveryService(campaignServiceObj, filterAudienceServiceObj)
+	deliveryServiceObj deliveryService.DeliveryService = deliveryService.NewDeliveryService(campaignServiceObj, matchEngineFilterServiceObj)
 	deliveryHandlerObj deliveryHandler.DeliveryHandler = deliveryHandler.NewDeliveryHandler(deliveryServiceObj)
 )
 
