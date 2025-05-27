@@ -15,7 +15,7 @@ var (
 	campaignServiceObj    campaignService.CampaignService       = campaignService.NewCampaignService(campaignRepositoryObj)
 
 	targetRulesRepositoryObj    matchEngineRepository.TargetRulesRepository = matchEngineRepository.NewTargetRulesRepository()
-	matchEngineFilterServiceObj matchEngineService.FilterService            = matchEngineService.NewFilterAudienceService(targetRulesRepositoryObj)
+	matchEngineFilterServiceObj matchEngineService.FilterService            = matchEngineService.NewFilterService(targetRulesRepositoryObj)
 
 	deliveryServiceObj deliveryService.DeliveryService = deliveryService.NewDeliveryService(campaignServiceObj, matchEngineFilterServiceObj)
 	deliveryHandlerObj deliveryHandler.DeliveryHandler = deliveryHandler.NewDeliveryHandler(deliveryServiceObj)

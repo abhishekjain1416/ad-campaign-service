@@ -16,7 +16,7 @@ type filterService struct {
 	targetRulesRepository matchEngineRepository.TargetRulesRepository
 }
 
-func NewFilterAudienceService(targetRulesRepository matchEngineRepository.TargetRulesRepository) FilterService {
+func NewFilterService(targetRulesRepository matchEngineRepository.TargetRulesRepository) FilterService {
 	return &filterService{
 		targetRulesRepository: targetRulesRepository,
 	}
